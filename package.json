@@ -11,8 +11,7 @@
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "postbuild": "echo 'Build completed successfully'",
-    "prestart": "npm run build"
+    "postbuild": "echo 'Build completed successfully'"
   },
   "dependencies": {
     "@types/nodemailer": "^7.0.2",
