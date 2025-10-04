@@ -18,6 +18,10 @@ const options: swaggerJsdoc.Options = {
       {
         url: 'http://localhost:3000',
         description: 'Development server'
+      },
+      {
+        url: process.env.RENDER_EXTERNAL_URL || `https://${process.env.RENDER_SERVICE_NAME || 'your-app'}.onrender.com`,
+        description: 'Production server (Render)'
       }
     ],
     components: {
@@ -247,7 +251,9 @@ const options: swaggerJsdoc.Options = {
       }
     ]
   },
-  apis: ['./src/routes/*.ts', './src/controllers/*.ts']
+  apis: process.env.NODE_ENV === 'production' 
+    ? ['./dist/routes/*.js', './dist/controllers/*.js']
+    : ['./src/routes/*.ts', './src/controllers/*.ts']
 };
 
 const specs = swaggerJsdoc(options);
